@@ -79,7 +79,7 @@ module overdrive_top(
         .hd1_cs(hd1_cs),
 
         // Submodule communication
-        //.int_wr_gate(wr_gate),
+        //.int_wr_gate(int_wr_gate),
         //.int_ers_gate(int_ers_gate),
         .int_trk_count(int_trk_count),
     );
