@@ -79,8 +79,8 @@ module overdrive_top(
         .hd1_cs(hd1_cs),
 
         // Submodule communication
-        //.wr_gate_r(wr_gate_r),
-        //.ers_gate(ers_gate),
+        //.int_wr_gate(wr_gate),
+        //.int_ers_gate(int_ers_gate),
         .int_trk_count(int_trk_count),
     );
 
@@ -112,13 +112,13 @@ module overdrive_top(
         // Sensors
         .ind_sens(ind_sens),
         .t00_sens(t00_sens),
-        .wp_sens(wp_sens)
-        .front_LED(front_LED)
+        .wp_sens(wp_sens),
+        .front_LED(front_LED),
 
         // Submodule communication
-        .int_trk_count(int_trk_count)
-        //.wr_gate_r(wr_gate_r),
-        //.ers_gate(ers_gate),
-    )
+        .int_trk_count(int_trk_count),
+        //.int_wr_gate_r(int_wr_gate),
+        //.int_ers_gate(int_ers_gate),
+    );
 
 endmodule
