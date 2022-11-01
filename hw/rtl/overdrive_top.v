@@ -85,7 +85,7 @@ module overdrive_top(
     );
 
     // Controller Circuit
-    // Handles control singals form the input bus and sensors and controls
+    // Handles control signals from the input bus and sensors and controls
     // the motorized components as necessary.
     overdrive_ctrl ctrl_circ(
         .clk(clk),

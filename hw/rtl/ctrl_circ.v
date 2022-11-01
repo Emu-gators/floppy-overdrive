@@ -4,7 +4,7 @@
  * Author: Thomas Le <thomas.le@ufl.edu>, Chase Ruskin
  * Created: Nov. 1, 2022
  *
- * This module handles control singals from the input bus and sensors. It also
+ * This module handles control signals from the input bus and sensors. It also
  * controls the motorized components as necessary.
  */
 
