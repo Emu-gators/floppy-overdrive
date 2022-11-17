@@ -21,26 +21,68 @@ module ctrl_circ(
     input wire motor_on,        // Pin 16 - Motor on
     input wire dir_sel,         // Pin 18 - Direction select
     input wire step,            // Pin 20 - Step head
-    // input wire wr_gate,         // Pin 24 - Write gate (unused?)
+    // input wire wr_gate,      // Pin 24 - Write gate (unused for now)
     output wire track_0,        // Pin 26 - Track 00 sensor
     output wire wr_protect,     // Pin 28 - Write protect sensor
     output wire ready,          // Pin 34 - Drive ready
 
     // Motors 
-    output wire spindle,        // Spindle motor driver
-    output wire step_motor,     // Stepper motor driver
-    output wire head_load,      // Head load solenoid
+    output wire spin_en,    // Spindle motor enable
+	 output wire spin_ss,    // Spindle speed select (1 = 360rpm, 0 = 300 rpm)
+    output wire [3:0] step_drv, // To 4-coil stepper motor driver (ULN2003C)
+    output wire head_load,  // Head load solenoid
 
     // Sensors
     input wire ind_sens,
     input wire t00_sens,
-    input wire wp_sens,
-    output wire front_LED,      // misc. LED visual on floppy drive front panel
+    input wire wpr_sens,
+	 input wire dsk_sens,
+	 
+	 // Misc. outputs
+    output wire front_LED, // Floppy front panel
+	 output wire dsk_LED, // Disk sensor (for testing)
 
     // Submodule communication
-    output wire int_trk_count,
+    output wire [6:0] trk_count // Current track count
     // output wire int_wr_gate,
     // output wire int_ers_gate,
 );
+
+localparam DRIVE_NUM = 1;
+
+// Step circuit
+wire step_en = tr00_sens & drive_sel[DRIVE_NUM];
+
+step_driver U_DRIVER(
+	.clk(clk),
+	.rst(rst),
+	.step(step),
+	.dir(dir_sel),
+	.tr0(tr00_sens),
+	.en(drive_sel[DRIVE_NUM]),
+	.coils(step_drv)
+);
+
+// Spindle logic - enable and speed select
+// Enable motor when disk inserted and enabled on bus
+assign spin_en = motor_on; // & drive_sel[DRIVE_NUM] & dsk_sens; TODO
+assign spin_ss = dens_sel; // Dependent on density select
+
+// Index sensor output
+assign index = ind_sens & drive_sel[DRIVE_NUM]; // Sensor is active-low
+
+// Track 0 sensor output
+assign track_0 = t00_sens & drive_sel[DRIVE_NUM]; // Sensor is active-high
+
+// Write-protect sensor output
+assign wr_protect = ~wpr_sens & drive_sel[DRIVE_NUM]; // Sensor is active-low
+
+// Ready signal logic
+assign ready = spin_en; // Motor is running, TODO
+
+// Front panel LED
+assign front_LED = spin_en; //in_use output
+
+assign dsk_LED = dsk_sens;
 
 endmodule
