@@ -50,8 +50,10 @@ module ctrl_circ(
 
 localparam DRIVE_NUM = 1;
 
+wire enable = ~drive_sel[DRIVE_NUM];
+
 // Step circuit
-wire step_en = tr00_sens & drive_sel[DRIVE_NUM];
+wire step_en = tr00_sens & enable;
 
 step_driver U_DRIVER(
 	.clk(clk),
@@ -59,23 +61,23 @@ step_driver U_DRIVER(
 	.step(step),
 	.dir(dir_sel),
 	.tr0(tr00_sens),
-	.en(drive_sel[DRIVE_NUM]),
+	.en(enable),
 	.coils(step_drv)
 );
 
 // Spindle logic - enable and speed select
 // Enable motor when disk inserted and enabled on bus
-assign spin_en = motor_on; // & drive_sel[DRIVE_NUM] & dsk_sens; TODO
-assign spin_ss = dens_sel; // Dependent on density select
+assign spin_en = ~motor_on; // Motor en is independent signal, active-low
+assign spin_ss = dens_sel; // Dependent on density select (HI = 360, LO = 300)
 
 // Index sensor output
-assign index = ind_sens & drive_sel[DRIVE_NUM]; // Sensor is active-low
+assign index = ind_sens & enable; // Sensor is active-low
 
 // Track 0 sensor output
-assign track_0 = t00_sens & drive_sel[DRIVE_NUM]; // Sensor is active-high
+assign track_0 = t00_sens & enable; // Sensor is active-high
 
 // Write-protect sensor output
-assign wr_protect = ~wpr_sens & drive_sel[DRIVE_NUM]; // Sensor is active-low
+assign wr_protect = ~wpr_sens & enable; // Sensor is active-low
 
 // Ready signal logic
 assign ready = spin_en; // Motor is running, TODO
