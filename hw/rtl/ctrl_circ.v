@@ -55,7 +55,7 @@ wire enable = ~drive_sel[DRIVE_NUM];
 // Step circuit
 wire step_en = tr00_sens & enable;
 
-step_driver U_DRIVER(
+step_driver_deb U_DRIVER(
 	.clk(clk),
 	.rst(rst),
 	.step(step),
@@ -70,14 +70,16 @@ step_driver U_DRIVER(
 assign spin_en = ~motor_on; // Motor en is independent signal, active-low
 assign spin_ss = dens_sel; // Dependent on density select (HI = 360, LO = 300)
 
+// Bus outputs are active-low
+
 // Index sensor output
-assign index = ind_sens & enable; // Sensor is active-low
+assign index = ~(ind_sens & enable); // Sensor is active-low
 
 // Track 0 sensor output
-assign track_0 = t00_sens & enable; // Sensor is active-high
+assign track_0 = ~(t00_sens & enable); // Sensor is active-high
 
 // Write-protect sensor output
-assign wr_protect = ~wpr_sens & enable; // Sensor is active-low
+assign wr_protect = ~(~wpr_sens & enable); // Sensor is active-low
 
 // Ready signal logic
 assign ready = spin_en; // Motor is running, TODO

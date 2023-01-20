@@ -1,13 +1,3 @@
-/* Floppy Overdrive - Step Driver Sub-Entity
- *
- * File: step_driver.v
- * Author: Thomas Le <thomas.le@ufl.edu>
- * Created: Nov. 16, 2022
- *
- * This module handles the control signals for the 4-coil stepper
- * motor via a 4-bit Grey code counter.
- */
-
 module step_driver(
 	input wire clk,
 	input wire rst,
