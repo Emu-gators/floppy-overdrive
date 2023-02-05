@@ -33,10 +33,10 @@ module ctrl_circ(
     output wire head_load,  // Head load solenoid
 
     // Sensors
-    input wire ind_sens,
-    input wire t00_sens,
-    input wire wpr_sens,
-	 input wire dsk_sens,
+    input wire ind_sens, // Low on TRUE (hole present), High on FALSE
+    input wire t00_sens, // Low on FALSE (not at tr0), High on TRUE
+    input wire wpr_sens, // Low on FALSE (notch present), High on TRUE
+	 input wire dsk_sens, // Low on FALSE (disk not present), High on TRUE
 	 
 	 // Misc. outputs
     output wire front_LED, // Floppy front panel
@@ -48,7 +48,7 @@ module ctrl_circ(
     // output wire int_ers_gate,
 );
 
-localparam DRIVE_NUM = 1;
+localparam DRIVE_NUM = 1; // Can be changed to determine drive number
 
 wire enable = ~drive_sel[DRIVE_NUM];
 
@@ -73,13 +73,13 @@ assign spin_ss = dens_sel; // Dependent on density select (HI = 360, LO = 300)
 // Bus outputs are active-low
 
 // Index sensor output
-assign index = ~(ind_sens & enable); // Sensor is active-low
+assign index = ~(~ind_sens & enable);
 
 // Track 0 sensor output
-assign track_0 = ~(t00_sens & enable); // Sensor is active-high
+assign track_0 = ~(t00_sens & enable);
 
 // Write-protect sensor output
-assign wr_protect = ~(~wpr_sens & enable); // Sensor is active-low
+assign wr_protect = ~(wpr_sens & enable);
 
 // Ready signal logic
 assign ready = spin_en; // Motor is running, TODO
