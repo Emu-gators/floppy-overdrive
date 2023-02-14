@@ -1,23 +1,15 @@
-/* Floppy Overdrive - Controller Test Harness
- *
- * File: circ_test_top.v
- * Author: Thomas Le <thomas.le@ufl.edu>
- * Created: Nov. 15, 2022
- *
- * This is a top-level entity solely for testing the mechanical
- * control circuit of the system using user-controlled switches,
- * connected directly to the headers of the drive's components.
- */
-
 module circ_test_top(
 	input wire clk,
 
 	// DE-10 Inputs
 	input wire motor_sw,    // SW1
 	input wire speed_sw,    // SW2
-	input wire step_out_sw, // KEY0
-	input wire step_in_sw,  // KEY1
+	//input wire step_out_sw, // KEY0
+	//input wire step_in_sw,  // KEY1
+	input wire step,
+	input wire dir,
 	input wire reset_sw,    // SW0
+	input wire drive_sel, // I/O pins
 	
 	// Floppy sensor Inputs
 	input wire tr0_sens,
@@ -41,20 +33,28 @@ module circ_test_top(
 	output wire rdy_LED, // LED4
 	output wire pnl_LED, // Floppy front panel
 	
+	//Output pins
+	output wire tr0_pin,
+	output wire ind_pin,
+	
 	output wire other_LED // LED9
 	);
 	
-wire dir; // DIR = 1 when stepping out, switches are active low
-assign dir = ~step_out_sw;
+//wire dir; // DIR = 1 when stepping out, switches are active low
+//assign dir = ~step_out_sw;
 
-wire step;
-assign step = step_in_sw & step_out_sw; // Step on either press
-
-wire [6:0] track;
-
-assign other_LED = step;
+//wire step;
+//assign step = step_in_sw & step_out_sw; // Step on either press
 
 assign step_LED = step_coil;
+
+wire [3:0] sel_temp;
+assign sel_temp = 4'b1101; //1'b0 & 1'b0 & drive_sel & 1'b0;
+
+assign tr0_pin = tr0_LED;
+assign ind_pin = ind_LED;
+assign other_LED = motor_sw;
+assign rdy_LED = step;
 	
 ctrl_circ U_TEST(
 	.clk(clk), //TODO??
@@ -62,13 +62,13 @@ ctrl_circ U_TEST(
 	.dens_sel(speed_sw),
 	.in_use(1'b1),
 	.index(ind_LED),
-	.drive_sel(4'b0010), // Hard-wired to disk 1
+	.drive_sel(sel_temp),
 	.motor_on(motor_sw),
 	.dir_sel(dir),
 	.step(step),
 	.track_0(tr0_LED),
 	.wr_protect(wpr_LED),
-	.ready(rdy_LED),
+	//.ready(rdy_LED),
 	.spin_en(spin_en),
 	.spin_ss(spin_ss),
 	.ind_sens(ind_sens),

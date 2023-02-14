@@ -11,7 +11,7 @@ module step_driver_deb(
 	output wire [3:0] coils
 	);
 	
-localparam DELAY_COUNT = 8'd25;
+localparam DELAY_COUNT = 8'd500;
 	
 reg [3:0] coil_state_r, next_coil;
 
