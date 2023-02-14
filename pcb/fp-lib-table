@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "174804-1")(type "KiCad")(uri "${KIPRJMOD}/174804-1")(options "")(descr ""))
+  (lib (name "IceWerx")(type "KiCad")(uri "${KIPRJMOD}/IceWerx/IceWerx.pretty")(options "")(descr ""))
+)
