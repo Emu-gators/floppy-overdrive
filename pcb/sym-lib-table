@@ -2,4 +2,5 @@
   (lib (name "174804-1")(type "KiCad")(uri "${KIPRJMOD}/174804-1/174804-1.kicad_sym")(options "")(descr ""))
   (lib (name "TXB0108-PW")(type "KiCad")(uri "${KIPRJMOD}/TXB0108-PW/TXB0108-PW.kicad_sym")(options "")(descr ""))
   (lib (name "IceWerx")(type "KiCad")(uri "${KIPRJMOD}/IceWerx/IceWerx.kicad_sym")(options "")(descr ""))
+  (lib (name "440055-4")(type "KiCad")(uri "${KIPRJMOD}/440055-4/440055-4.kicad_sym")(options "")(descr ""))
 )
