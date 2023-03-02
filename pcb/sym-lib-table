@@ -3,4 +3,6 @@
   (lib (name "TXB0108-PW")(type "KiCad")(uri "${KIPRJMOD}/TXB0108-PW/TXB0108-PW.kicad_sym")(options "")(descr ""))
   (lib (name "IceWerx")(type "KiCad")(uri "${KIPRJMOD}/IceWerx/IceWerx.kicad_sym")(options "")(descr ""))
   (lib (name "440055-4")(type "KiCad")(uri "${KIPRJMOD}/440055-4/440055-4.kicad_sym")(options "")(descr ""))
+  (lib (name "MAX660MX_NOPB")(type "KiCad")(uri "${KIPRJMOD}/MAX660MX⁄NOPB/MAX660MX_NOPB.kicad_sym")(options "")(descr ""))
+  (lib (name "THS4521IDR")(type "KiCad")(uri "${KIPRJMOD}/THS4521IDR/THS4521IDR.kicad_sym")(options "")(descr ""))
 )
