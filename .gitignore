@@ -1,0 +1,6 @@
+pcb_tests/floppy_bus/floppy_bus.asc
+pcb_tests/floppy_bus/floppy_bus.bin
+pcb_tests/floppy_bus/floppy_bus.json
+pcb_tests/external_header/external_header.asc
+pcb_tests/external_header/external_header.bin
+pcb_tests/external_header/external_header.json
