@@ -41,8 +41,8 @@
 2. Connect the negative end of a multimeter to Pin 40 of Header J8 (GND) and the positive end to Pin 39 (+3.3V).
 3. Turn on the power supply.
 4. Ensure that the multimeter is reading +3.3V.
-5. Touch the multimeter to pin 2 of U1 and U2 and ensure that each device is receiving +3.3V volts.
-6. Touch the multimeter to pin 39 of J8 (the breakout pin header) and ensure that 3.3 volts is available on that pin.
+5. Touch the multimeter to pin 2 of U1 and U2 and ensure that each device is receiving +3.3V.
+6. Touch the multimeter to pin 39 of J8 (the breakout pin header) and ensure that +3.3V is available on that pin.
 
 ## Section 3: Functionality Testing
 
