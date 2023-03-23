@@ -52,14 +52,14 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 2. Replace the FPGA in its socket on the control board.
 3. Connect the negative end of an oscilloscope to Pin 1 of J3 (the 34-pin floppy bus).
 4. Power on the control board.
-5. For each even-numbered pin on J3 (excluding pin 4), connect the positive end of the oscilloscope. Verify that each pin is toggling at a frequency of 1 kHz and only switches between +5V and 0V.
+5. For each even-numbered pin on J3 (excluding pin 4), connect the positive end of the oscilloscope. Verify that each pin is toggling at a frequency of about 500 Hz and only switches between +5V and 0V.
 
 ## External Header Continuity
 1. Program the FPGA device with the code found in pcb_tests/external_header.
 2. Replace the FPGA in its socket on the control board.
 3. Connect the negative end of an oscilloscope to Pin 40 of J8 (ground on the breakout pins).
 4. Power on the control board.
-5. Starting at pin 2 and going up to pin 38, connect the positive end of the oscilloscope to each pin on the header. Verify that each pin is toggling at a frequency of 1 kHz and only switches between +3.3V and 0V.
+5. Starting at pin 2 and going up to pin 38, connect the positive end of the oscilloscope to each pin on the header. Verify that each pin is toggling at a frequency of about 500 Hz and only switches between +3.3V and 0V.
 
 ## Manual Disk Sensor Output
 1. Prepare the MF504A drive and a floppy disk, ensuring that the index hole on the disk is not visible.
