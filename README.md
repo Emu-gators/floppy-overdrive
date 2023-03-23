@@ -9,7 +9,7 @@ A revival of the floppy disk drive and controller for modern computers. _Sending
 The project is laid out with the following directories:
 
 - `docs`: relevant documents and reading materials
-- `hw`: HDL code and testbenched
+- `hw`: HDL code and testbenches
 - `pcb` : KiCad project for the control circuit PCB
 - `pcb_tests` : Test code and procedures for the control circuit PCB
 - `sw`: software code and scripts
