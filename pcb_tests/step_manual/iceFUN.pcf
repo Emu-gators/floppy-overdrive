@@ -1,0 +1,13 @@
+# For iceWERX board
+
+set_io --warn-no-port clk      P7
+
+set_io --warn-no-port dir_sel  M12
+set_io --warn-no-port step     P8
+
+set_io --warn-no-port step_0   C5
+set_io --warn-no-port step_1   C4
+set_io --warn-no-port step_2   A2
+set_io --warn-no-port step_3   B1
+
+set_io --warn-no-port t00_sens D3

@@ -13,7 +13,7 @@ module top(
     input wire ind_sens, // Low on TRUE (hole present), High on FALSE
     input wire t00_sens, // Low on FALSE (not at tr0), High on TRUE
     input wire wpr_sens, // Low on FALSE (notch present), High on TRUE
-    input wire dsk_sens, // Low on FALSE (disk not present), High on TRUE
+    input wire dsk_sens  // Low on FALSE (disk not present), High on TRUE
 );
 
 // Bus outputs are active-low

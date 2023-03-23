@@ -1,0 +1,7 @@
+# For iceWERX board
+
+set_io --warn-no-port dens_sel E12
+set_io --warn-no-port motor_on N14
+
+set_io --warn-no-port spin_en  M6
+set_io --warn-no-port spin_ss  M7
