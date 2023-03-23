@@ -11,5 +11,5 @@ The project is laid out with the following directories:
 - `docs`: relevant documents and reading materials
 - `hw`: HDL code and testbenched
 - `pcb` : KiCad project for the control circuit PCB
-- `pcb_tests` : Tech code and procedures for the control circuit PCB
+- `pcb_tests` : Test code and procedures for the control circuit PCB
 - `sw`: software code and scripts
