@@ -8,3 +8,5 @@ set_io --warn-no-port ind_sens   A1
 set_io --warn-no-port t00_sens   D3
 set_io --warn-no-port wpr_sens   A4
 set_io --warn-no-port dsk_sens   A3
+
+set_io --warn-no-port spin_en  M6

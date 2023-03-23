@@ -62,20 +62,20 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 5. Starting at pin 2 and going up to pin 38, connect the positive end of the oscilloscope to each pin on the header. Verify that each pin is toggling at a frequency of 1 kHz and only switches between +3.3V and 0V.
 
 ## Manual Disk Sensor Output
-1. Prepare the MF504A drive and a floppy disk.
+1. Prepare the MF504A drive and a floppy disk, ensuring that the index hole on the disk is not visible.
 2. Connect headers J2, J4, and J6 to their respective connectors on the floppy drive.
 3. Program the FPGA device with the code found in pcb_tests/sensors and replace it on the control board.
 4. Connect the negative end of a multimeter to Pin 40 of J8 (ground on the breakout pins).
 5. Power on the control board. 
 6. With no disk inserted in the drive, touch the positive end of the multimeter to test points 4-6 by header J4. All three points should currently be at ground.
-7. Touch the positive end of the multimeter to test points 8 and 10. All three should be at +3.3V.
-8. Touch the positive end of the multimeter to pins 8 (Index) and 28 (Write Protect) on header J3. Both should be at +5V.
+7. Touch the positive end of the multimeter to test points 8 and 10. 8 should be at ground while 10 should be at +3.3V.
+8. Touch the positive end of the multimeter to pins 8 (Index) and 28 (Write Protect) on header J3. 8 should be at ground and 28 should be at +5V.
 9. Insert a floppy disk in the drive just far enough to cover the write-protect sensor on the front-left side of the drive.
 10. Repeat steps 7-9. The write protect signal should now be at +3.3V at TP4, and ground on TP10 and pin 28 at header J3.
-11. Insert the disk far enough to cover the index sensor at the center of the drive, near the spindle motor.
-12. Repeat steps 7-9. The write protect signal and index signal should match that seen in step 11.
+11. Insert the disk far enough to cover the index sensor at the center of the drive, found near the spindle motor and connected by grey and purple wires.
+12. Repeat steps 7-9. The index signal should now be at +3.3V at TP5 and 8, and at +5V at pin 8.
 13. Insert the disk completely into the drive, triggering the disk latch.
-14. Repeat steps 7-9. The index signal should match that seen in step 13 and TP6 should now be at +3.3V. If there is no write-protect notch in the disk, the write-protect signal should match steps 7-9, otherwise it should match steps 11 and 13.
+14. Repeat steps 7-9. The index signal should match that seen in step 13 and TP6 should now be at +3.3V and the disk signal should be at +3.3V at TP6. If there is a write-protect notch present on the disk, the write-protect signal should now match match steps 7 and 8, otherwise it should match steps 11 and 13.
 
 ## Manual Track 0 Sensor Output
 1. Prepare the MF504A drive and a floppy disk.
@@ -84,11 +84,11 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 4. Before powering on the control board, gently push the magnetic heads towards the read end of the drive until it reached the end of the rails.
 5. Connect the negative end of a multimeter to Pin 40 of J8 (ground on the breakout pins).
 6. Power on the control board. 
-7. Touch the positive end of the multimeter to test point ??. The test point should currently be at +3.3V.
-8. Touch the positive end of the multimeter to test point ??. The test point should currently be at ground.
-9. Touch the positive end of the multimeter to pin ?? on header J3. It shold currently be at ground.
+7. Touch the positive end of the multimeter to test point 7. The test point should currently be at +3.3V.
+8. Touch the positive end of the multimeter to test point 11. The test point should currently be at ground.
+9. Touch the positive end of the multimeter to pin 26 on header J3. It should currently be at ground.
 10. Power off the control board and gently push the head towards the front side of the drive until it moves about 1 cm.
-11. Repeat steps 6-9. TP?? should be at ground, and TP?? and pin ?? should be at +3.3V and +5V, respectively.
+11. Repeat steps 6-9. TP7 should be at ground, while TP11 and pin 26 should be at +3.3V and +5V, respectively.
 
 ## Manual Spindle Motor Input
 1. Program the FPGA device with the code found in pcb_tests/spindle_manual and replace it on the control board.
@@ -97,7 +97,7 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 4. Connect a power supply to pin 16 (motor enable) of the input floppy bus (J3) and activate it at a level of +5V.
 5. Power on the control board. With the power supply at +5V, the oscilloscope should show the motor control pin at ground.
 6. Set the power supply to 0V. The oscilloscope should immediately show the pin at a value of +3.3V.
-7. Power off the control board and power supply. Disconnect the oscilloscope and attach the corresponding spindle motor connector.
+7. Power off the control board and power supply. Disconnect the oscilloscope and attach J6.
 8. Repeat steps 5-6. When the power supply is at +5V, the spindle motor located in the center of the drive should not be spinning. At 0V, the spindle motor should be spinning.
 
 ## Manual Stepper Motor Input

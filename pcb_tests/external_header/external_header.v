@@ -43,10 +43,10 @@ module top (
     /* LED drivers - counter is inverted for display because leds are active low */
     always @* begin
         if(counter < TIMER_HALF) begin
-            bus_out = {36{1'b0}};
+            bus_out = {37{1'b0}};
         end
         else begin
-            bus_out = {36{1'b1}};
+            bus_out = {37{1'b1}};
         end
     end
 

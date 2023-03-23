@@ -13,7 +13,10 @@ module top(
     input wire ind_sens, // Low on TRUE (hole present), High on FALSE
     input wire t00_sens, // Low on FALSE (not at tr0), High on TRUE
     input wire wpr_sens, // Low on FALSE (notch present), High on TRUE
-    input wire dsk_sens  // Low on FALSE (disk not present), High on TRUE
+    input wire dsk_sens,  // Low on FALSE (disk not present), High on TRUE
+
+    // Motors
+    output wire spin_en
 );
 
 // Bus outputs are active-low
@@ -26,5 +29,8 @@ assign track_0 = ~(t00_sens);
 
 // Write-protect sensor output
 assign wr_protect = ~(wpr_sens);
+
+// Disable the spindle motor for this test
+assign spin_en = 1'b0;
 
 endmodule
