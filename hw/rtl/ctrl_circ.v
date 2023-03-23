@@ -28,7 +28,7 @@ module ctrl_circ(
 
     // Motors 
     output wire spin_en,    // Spindle motor enable
-	 output wire spin_ss,    // Spindle speed select (1 = 360rpm, 0 = 300 rpm)
+	output wire spin_ss,    // Spindle speed select (1 = 360rpm, 0 = 300 rpm)
     output wire [3:0] step_drv, // To 4-coil stepper motor driver (ULN2003C)
     output wire head_load,  // Head load solenoid
 
@@ -36,16 +36,11 @@ module ctrl_circ(
     input wire ind_sens, // Low on TRUE (hole present), High on FALSE
     input wire t00_sens, // Low on FALSE (not at tr0), High on TRUE
     input wire wpr_sens, // Low on FALSE (notch present), High on TRUE
-	 input wire dsk_sens, // Low on FALSE (disk not present), High on TRUE
+	input wire dsk_sens, // Low on FALSE (disk not present), High on TRUE
 	 
 	 // Misc. outputs
     output wire front_LED, // Floppy front panel
-	 output wire dsk_LED, // Disk sensor (for testing)
-
-    // Submodule communication
-    output wire [6:0] trk_count // Current track count
-    // output wire int_wr_gate,
-    // output wire int_ers_gate,
+	output wire dsk_LED // Disk sensor (for testing)
 );
 
 localparam DRIVE_NUM = 1; // Can be changed to determine drive number

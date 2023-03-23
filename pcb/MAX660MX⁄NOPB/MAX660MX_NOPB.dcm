@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MAX660MX_NOPB
+D Switched Capacitor Voltage Converter
+K
+F http://www.ti.com/lit/gpn/max660
+$ENDCMP
+#
+#End Doc Library

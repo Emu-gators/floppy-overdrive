@@ -1,0 +1,15 @@
+pcb_tests/floppy_bus/floppy_bus.asc
+pcb_tests/floppy_bus/floppy_bus.bin
+pcb_tests/floppy_bus/floppy_bus.json
+pcb_tests/external_header/external_header.asc
+pcb_tests/external_header/external_header.bin
+pcb_tests/external_header/external_header.json
+pcb_tests/sensors/sensors.asc
+pcb_tests/sensors/sensors.bin
+pcb_tests/sensors/sensors.json
+pcb_tests/spindle_manual/spindle_manual.asc
+pcb_tests/spindle_manual/spindle_manual.bin
+pcb_tests/spindle_manual/spindle_manual.json
+pcb_tests/step_manual/step_manual.asc
+pcb_tests/step_manual/step_manual.bin
+pcb_tests/step_manual/step_manual.json

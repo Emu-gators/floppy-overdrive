@@ -1,0 +1,10 @@
+# For iceWERX board
+
+set_io --warn-no-port index      G12
+set_io --warn-no-port track_0    L14
+set_io --warn-no-port wr_protect K14
+
+set_io --warn-no-port ind_sens   A1
+set_io --warn-no-port t00_sens   D3
+set_io --warn-no-port wpr_sens   A4
+set_io --warn-no-port dsk_sens   A3
