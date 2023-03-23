@@ -4,3 +4,6 @@ pcb_tests/floppy_bus/floppy_bus.json
 pcb_tests/external_header/external_header.asc
 pcb_tests/external_header/external_header.bin
 pcb_tests/external_header/external_header.json
+pcb_tests/sensors/sensors.asc
+pcb_tests/sensors/sensors.bin
+pcb_tests/sensors/sensors.json
