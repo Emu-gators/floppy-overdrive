@@ -15,6 +15,16 @@
 ## Section 2: Power Testing
 
 ### Ground Continuity
+1. Leave the board unplugged and the FPGA device removed.
+2. Set a multimeter to continuity mode.
+3. Keep one end of the multimeter on the ground strap on top of the power plug.
+4. Run the other end of the multimeter along the odd-numbered pins of J3. All of these pins, as well as those in the following steps, should have continuity with ground.
+5. Tap the other end of multimeter to pin 40 of J8 and confirm continuity.
+6. Tap the multimeter to pin 32 of J2 and 36 of J3 and confirm continuity.
+7. Tap the multimeter to pin 11 of U1 and 2 (bottom-right) and confirm continuity.
+8. Tap the multimeter to pin 8 of U3 (bottom-left) and confirm continuity.
+9. Tap the multimeter to pin 2 of IC1 and 2 (second down, left side) and confirm continuity.
+10. Tap the multimeter to pins 3 and 6 of IC3 (third down, both sides) and confirm continuity.
 
 ### External Voltage Rails (+5V/+12V)
 1. With the FPGA device removed, connect a 4-pin +5V/+12V power supply to the board at Header J1.
@@ -99,6 +109,10 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 6. Set the power supply to 0V. The oscilloscope should immediately show the pin at a value of +3.3V.
 7. Power off the control board and power supply. Disconnect the oscilloscope and attach J6.
 8. Repeat steps 5-6. When the power supply is at +5V, the spindle motor located in the center of the drive should not be spinning. At 0V, the spindle motor should be spinning.
+9. With the board powered off, attach another power supply to pin 2 (density) on J3 and set it to +5V. Leave pin 16 at ground.
+10. Power on the board. The drive should be spinning.
+11. Set the power suply from +5V to ground. The spindle motor's speed should decrease in response.
+12. Switch between ground and +5V several times, ensuring that the motor is able to switch between both speeds correctly.
 
 ## Manual Stepper Motor Input
 1. Program the FPGA device with the code found in pcb_tests/step_manual and replace it on the control board.
@@ -106,14 +120,14 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 3. Connect a function generator to pin 20 (step) of the input floppy bus (J3). Set it to a square wave with a period of 11 ms and a 91% duty cycle, where the square wave is mostly at +5V and pulses to 0V.
 4. Connect a power supply to pin 18 (step direction) of the floppy bus. Set it to +5V.
 5. Power on the control board. Only one of the step LEDs should be enabled.
-6. Trigger the function generator to send one pulse. The activated LED should shift ?(right/left)?.
+6. Trigger the function generator to send one pulse. The activated LED should shift in one direction.
 7. Set the power supply to 0V and repeat the pulse. The original LED should be activated again.
-8. Set the power supply back to +5V and send 5 pulses to the control board. The LEDs should be observed to “step” (?left?) and wrap around the 4 LEDs.
+8. Set the power supply back to +5V and send 5 pulses to the control board. The LEDs should be observed to move in one direction and wrap around the 4 LEDs.
 9. Set the power supply to 0V and send 5 pulses again. The same behavior should be observed in the opposite order as in step 8.
 10. Set the power supply to +5V and send pulses continuously for 5 seconds. The LEDs should continue to alternate in the usual direction and wrap around without stopping during this period.
 11. Repeat step 10 with the power supply at 0V. The same behavior should be seen in the opposite direction.
 12. Power off all devices and attach the stepper motor header.
-13. Repeat steps 6-9, observing the motion of the drive’s magnetic head. A ??-ward shift in the LEDs should correspond to the drive head moving towards the center of the drive and vice-versa. Do not repeat steps 10-11 as the drive head may step too far in either direction, potentially causing damage to the hardware.
+13. Repeat steps 6-9, observing the motion of the drive’s magnetic head.
 
 ## Controller Connection
 1. Program the FPGA drive with the latest code release and replace it on the board.
@@ -138,5 +152,3 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 6. Using the ArduinoFDC in monitor mode, step the drive to track 1, where no data should be present.
 7. The oscilloscope should display a roughly sinusoidal signal of a frequency of ~250 kHz and an amplitude of 200 mV. The oscilloscope will likely not display a clean signal due to the nature of the formatting on the disk and the current lack of any filtering hardware.
 8. This process also consists of the basic usage of the drive for any further development on the read circuit.
-
-TODO 360/300 rpm. Ground continutity
