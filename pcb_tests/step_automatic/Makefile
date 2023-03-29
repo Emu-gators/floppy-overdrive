@@ -1,13 +1,13 @@
 # Project setup
-PROJ      = step_manual
+PROJ      = step_automatic
 DEVICE    = 8k
 
 # Files
-FILES = pll.v step_driver_deb.v step_manual.v
+FILES = pll.v step_automatic.v
 
 .PHONY: step_manual clean burn
 
-step_manual:
+step_automatic:
 	# synthesize using Yosys
 	yosys -p "synth_ice40 -top top -json $(PROJ).json" $(FILES)
 	# Place and route using nextpnr

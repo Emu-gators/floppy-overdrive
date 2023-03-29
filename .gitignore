@@ -14,3 +14,6 @@ pcb_tests/spindle_manual/spindle_manual.json
 pcb_tests/step_manual/step_manual.asc
 pcb_tests/step_manual/step_manual.bin
 pcb_tests/step_manual/step_manual.json
+pcb_tests/step_automatic/step_automatic.asc
+pcb_tests/step_automatic/step_automatic.bin
+pcb_tests/step_automatic/step_automatic.json

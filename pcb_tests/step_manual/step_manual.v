@@ -25,8 +25,12 @@ wire enable = 1'b1;
 wire rst = 1'b0;
 wire [3:0] step_drv;
 
+wire pll_clk;
+wire locked;
+pll U_PLL(.clock_in(clk), .global_clock(pll_clk), .locked(locked));
+
 step_driver_deb U_DRIVER(
-	.clk(clk),
+	.clk(pll_clk),
 	.rst(rst),
 	.step(step),
 	.dir(dir_sel),

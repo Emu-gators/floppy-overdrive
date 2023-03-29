@@ -114,23 +114,32 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 11. Set the power suply from +5V to ground. The spindle motor's speed should decrease in response.
 12. Switch between ground and +5V several times, ensuring that the motor is able to switch between both speeds correctly.
 
-## Manual Stepper Motor Input
-1. Program the FPGA device with the code found in pcb_tests/step_manual and replace it on the control board.
+## Automatic Stepper Motor Input
+NOTE: Do not run this test while the stepper motor is connected (J3), otherwise the head may bang against the far edge of its range of motion, potentially damaging the stepper motor.
+1. Program the FPGA device with the code found in pcb_tests/step_automatic and replace it on the control board.
 2. Disconnect the stepper motor header from the control board and make sure jumper J1 is in place to activate the step LEDs.
-3. Connect a function generator to pin 20 (step) of the input floppy bus (J3). Set it to a square wave with a period of 11 ms and a 91% duty cycle, where the square wave is mostly at +5V and pulses to 0V.
-4. Connect a power supply to pin 18 (step direction) of the floppy bus. Set it to +5V.
-5. Power on the control board. Only one of the step LEDs should be enabled.
-6. Trigger the function generator to send one pulse. The activated LED should shift in one direction.
-7. Set the power supply to 0V and repeat the pulse. The original LED should be activated again.
-8. Set the power supply back to +5V and send 5 pulses to the control board. The LEDs should be observed to move in one direction and wrap around the 4 LEDs.
-9. Set the power supply to 0V and send 5 pulses again. The same behavior should be observed in the opposite order as in step 8.
-10. Set the power supply to +5V and send pulses continuously for 5 seconds. The LEDs should continue to alternate in the usual direction and wrap around without stopping during this period.
-11. Repeat step 10 with the power supply at 0V. The same behavior should be seen in the opposite direction.
-12. Power off all devices and attach the stepper motor header.
-13. Repeat steps 6-9, observing the motion of the drive’s magnetic head.
+3. Connect a power supply to pin 18 (step direction) of the floppy bus. Set it to +5V.
+4. Power on the control board. Only one of the step LEDs should be enabled at a time, incrementing in regular intervals from D1 to D4, then repeating from D1.
+5. Set the power supply to 0V. The LEDs should then blink in the opposite direction, counting down from D4 to D1.
+
+## Manual Stepper Motor Input
+1. Prepare a floppy disk to insert into the drive.
+2. Program the FPGA device with the code found in pcb_tests/step_manual and replace it on the control board.
+3. Disconnect the stepper motor header from the control board and make sure jumper J1 is in place to activate the step LEDs.
+4. Connect a function generator to pin 20 (step) of the input floppy bus (J3). Set it to a square wave with a period of 11 ms and a 91% duty cycle, where the square wave is mostly at +5V and pulses to 0V.
+5. Connect a power supply to pin 18 (step direction) of the floppy bus. Set it to +5V.
+6. Power on the control board. Only one of the step LEDs should be enabled.
+7. Trigger the function generator to send one pulse. The activated LED should shift in one direction.
+8. Set the power supply to 0V and repeat the pulse. The original LED should be activated again.
+9. Set the power supply back to +5V and send 5 pulses to the control board. The LEDs should be observed to increment from 1 to 4 and weap around to 1.
+10. Set the power supply to 0V and send 5 pulses again. The same behavior should be observed in the opposite order as in step 8.
+11. Set the power supply to +5V and send pulses continuously for 5 seconds. The LEDs should continue to increment in the same direction without stopping during this period.
+12. Repeat step 10 with the power supply at 0V. The same behavior should be seen in the opposite direction.
+13. Power off all devices, attach the stepper motor header to the board, and insert the disk into the drive.
+14. Repeat steps 6-9, observing the motion of the drive’s magnetic head, where at +5V the head approaches the bus side of the drive, and at 0V it approaches the center of the disk.
 
 ## Controller Connection
-1. Program the FPGA drive with the latest code release and replace it on the board.
+1. Program the FPGA drive with the latest code release from /hw and replace it on the board.
 2. Acquire an Arduino-compatible device and program it with the ArduinoFDC software controller from `https://github.com/dhansel/ArduinoFDC`.
 3. Wire the Arduino to the control board, following the pinout provided for that device.
 4. Connect all drive sensors and motors to the control board.
@@ -151,4 +160,4 @@ NOTE: When reprogramming the iceWerx FPGA, remove it from the control board to p
 5. Power on the control board.
 6. Using the ArduinoFDC in monitor mode, step the drive to track 1, where no data should be present.
 7. The oscilloscope should display a roughly sinusoidal signal of a frequency of ~250 kHz and an amplitude of 200 mV. The oscilloscope will likely not display a clean signal due to the nature of the formatting on the disk and the current lack of any filtering hardware.
-8. This process also consists of the basic usage of the drive for any further development on the read circuit.
+This process also consists of the basic usage of the drive for any further development on the read circuit.
