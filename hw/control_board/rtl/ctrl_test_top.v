@@ -44,23 +44,22 @@ module ctrl_test_top(
 	output wire wpr_out, // Pin K14
 
 	// Green LED for inserted disk
-	output wire dsk_LED  // Pin M4
+	output wire dsk_LED, // Pin M4
+
+	// Red LED to verify any signal
+	output wire clk_out  // Pin A5
 	);
 
 	// Stepper motor coils
 	// These inputs must be set as individual pins to work with the iceStorm toolchain
 	wire [3:0] step_coil;
-	assign step_0 = step_0[0];
-	assign step_1 = step_1[1];
-	assign step_2 = step_2[2];
-	assign step_3 = step_3[3];
+	assign step_0 = step_coil[0];
+	assign step_1 = step_coil[1];
+	assign step_2 = step_coil[2];
+	assign step_3 = step_coil[3];
 
-	// PLL Module - See Lattice iCE40 documentation
-	// This module brings the 12 MHz clock up to 50 MHz, which was the speed initially used for this circuit.
-	// The control circuit will likely work at 12 MHz, but this has not been tested.
-	wire pll_clk;
-    wire locked;
-    pll U_PLL(.clock_in(clk), .global_clock(pll_clk), .locked(locked));
+	// Verify spin_en signal
+	assign clk_out = spin_en;
 
 	// Drive select signals - manually set the to drive 1, so the circuit is always enabled.
 	wire [3:0] sel_manual;
@@ -68,8 +67,8 @@ module ctrl_test_top(
 	
 	// Instantiate the control circuit module
 	ctrl_circ U_TEST(
-		.clk(pll_clk),
-		.rst(1'b1), // PCB has on-board reset
+		.clk(clk),
+		.rst(1'b0), // PCB has on-board reset
 		.dens_sel(dens_in),
 		.index(ind_out),
 		.drive_sel(sel_manual),

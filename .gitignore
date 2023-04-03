@@ -17,3 +17,7 @@ pcb_tests/step_manual/step_manual.json
 pcb_tests/step_automatic/step_automatic.asc
 pcb_tests/step_automatic/step_automatic.bin
 pcb_tests/step_automatic/step_automatic.json
+hw/control_board/ctrl_board.asc
+.gitignore
+hw/control_board/ctrl_board.json
+hw/control_board/ctrl_board.bin

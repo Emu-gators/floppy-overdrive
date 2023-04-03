@@ -36,11 +36,12 @@ module step_driver_deb(
 	reg [7:0] count_r, next_count;
 
 	// FSM states and state register
-	localparam START = 3'b000;
-	localparam COUNT = 3'b001;
-	localparam CHECK = 3'b010;
-	localparam WAIT  = 3'b011;
-	localparam STEP  = 3'b100;
+	localparam LOAD  = 3'b000;
+	localparam START = 3'b001;
+	localparam COUNT = 3'b010;
+	localparam CHECK = 3'b011;
+	localparam WAIT  = 3'b100;
+	localparam STEP  = 3'b101;
 	reg [2:0] state_r, next_state;
 
 	// Step and direction inputs for dual-flop synchronizers
@@ -77,10 +78,16 @@ module step_driver_deb(
 		next_count = count_r;
 		
 		case(state_r)
+			LOAD: begin // Makes sure first coil is energized at start of execution
+				next_coil = 4'b0001;
+				next_state = START;
+			end
+
 			START: begin
 				if((en == 1'b1) && (step_r == 1'b0)) begin // If the step line goes low and the drive is enabled
 					next_state = COUNT; // Go to COUNT
-					next_count = DELAY_COUNT; // Start coutner from max. value
+					next_count = DELAY_COUNT; // Start counter from max. value
+					//next_coil  = 4'b1010;
 				end
 			end
 			
@@ -107,7 +114,7 @@ module step_driver_deb(
 			end
 			
 			STEP: begin
-				if(dir == 1'b0) begin // dir = low: step towards center of disk, coils 1>2>3>4>1...
+				if(dir_r == 1'b0) begin // dir = low: step towards center of disk, coils 1>2>3>4>1...
 					case(coil_state_r)
 						4'b0001: next_coil = 4'b0010;
 						4'b0010: next_coil = 4'b0100;
@@ -115,7 +122,7 @@ module step_driver_deb(
 						4'b1000: next_coil = 4'b0001;
 						default: next_coil = 4'b0001;
 					endcase
-				end else if(dir == 1'b1) begin // dir - high: step towards edge of disk, coils 4>3>2>1>4...
+				end else if(dir_r == 1'b1) begin // dir - high: step towards edge of disk, coils 4>3>2>1>4...
 					case(coil_state_r)
 						4'b0001: next_coil = 4'b1000;
 						4'b0010: next_coil = 4'b0001;

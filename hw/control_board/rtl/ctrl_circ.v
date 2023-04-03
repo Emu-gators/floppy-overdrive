@@ -53,7 +53,7 @@ module ctrl_circ(
         .rst(rst),
         .step(step),
         .dir(dir_sel),
-        .tr0(tr00_sens),
+        .tr0(t00_sens),
         .en(enable),
         .coils(step_drv)
     );
@@ -76,7 +76,7 @@ module ctrl_circ(
 
     // Ready signal logic
     // This signal varies throughout different drives and FDCs, and this logic may need to be modified to account for this.
-    assign ready = spin_en; // The drive is ready when the motor is running
+    assign ready = 1'b0; // Not used
 
     // Front panel LED
     assign front_LED = spin_en; // The front panel LED should be enabled when the motor is spinning

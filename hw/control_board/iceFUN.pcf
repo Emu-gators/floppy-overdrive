@@ -19,3 +19,4 @@ set_io --warn-no-port tr0_out  L14
 set_io --warn-no-port ind_out  G12
 set_io --warn-no-port wpr_out  K14
 set_io --warn-no-port dsk_LED  M4
+set_io --warn-no-port clk_out  A5
