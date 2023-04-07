@@ -1,6 +1,6 @@
 # Project Status (as of April 2023)
 
-![](img/pcb_complete.jpg)
+![](img/pcb_complete.jpg)\
 The assembled PCB.
 
 ## PCB Issues
