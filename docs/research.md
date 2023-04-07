@@ -44,7 +44,7 @@ https://archive.org/details/bitsavers_mitsubishiMF504A347UASchematics_382555
 - Specifications, service manuals, and schematics for the Mitsubishi MF504 used in this project. **Very useful** in identifying components and understanding the intended behavior of the drive.
 
 [13] http://info-coach.fr/atari/hardware/_fd-hard/AN-917.pdf
-- Application note on reading and writing data for a floppy disk. Essential document for understanding the theory of how data is recorded and read off of a disk.
+- Application note AN917 on reading and writing data for a floppy disk. Essential document for understanding the theory of how data is recorded and read off of a disk.
 
 [14] https://link.springer.com/content/pdf/10.1007/978-0-387-84927-0_3.pdf
 - Publication on recovering data off of failing disks which also goes into some detail about the theory behind disk reading and writing.
@@ -66,3 +66,6 @@ https://archive.org/details/bitsavers_mitsubishiMF504A347UASchematics_382555
 
 [20] http://www.b-kainka.de/Daten/Analog/ne592.pdf
 - Application note for the NE592, a much older amplifier, with an example circuit for a disk decoder circuit similar to those implemented on the original drives.
+
+[21] http://brutmanlabs.org/Diskettes/Diskette_handling.html
+- Another introduction to the basics and different types of floppy disks. Discusses DD vs HD disks and when to use one type in a certain drive.
